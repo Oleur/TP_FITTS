@@ -27,7 +27,7 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Cliquer alternativement sur les cercles &lt;br/&gt;Continuez tant que le programme ne vous indique pas de vous arrêter.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QFrame" name="frame">
+   <widget class="QFrame" name="mainFrame">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -329,12 +329,26 @@
      </property>
     </widget>
    </widget>
+   <widget class="QPushButton" name="startButton_2">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>70</y>
+      <width>114</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Start</string>
+    </property>
+   </widget>
    <zorder>groupBox</zorder>
    <zorder>label</zorder>
-   <zorder>frame</zorder>
+   <zorder>mainFrame</zorder>
    <zorder>label_2</zorder>
    <zorder>nbTest_spinBox</zorder>
    <zorder>groupBox_2</zorder>
+   <zorder>startButton_2</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

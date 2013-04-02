@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QTimer>
+#include <QtCore/qmath.h>
 
 namespace Ui {
 class MainWindow;
@@ -18,6 +19,8 @@ public:
    ~MainWindow();
     QTimer *timer_start;
     int countdown;
+    int computeDistance(QPoint, QPoint);
+    int nb_test;
     
 protected slots:
     void timeOut();
@@ -28,6 +31,7 @@ private slots:
     void incrementCountdown();
     void randomMoveButtons();
     int randInt(int,int);
+
 
 private:
     Ui::MainWindow *ui;

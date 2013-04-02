@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QtGui/QMessageBox>
+#include <QtCore/qmath.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -42,10 +43,18 @@ void MainWindow::on_endButton_clicked()
 {
     timer_start->stop();
     QString str;
-    str.setNum(countdown);
+    str.setNum(this->computeDistance(ui->endButton->pos(), ui->startButton->pos()));
     QMessageBox::information( this, "Information",str);
     countdown=0;
-    this->randomMoveButtons();
+    nb_test+=1;
+    if(nb_test == ui->nbTest_spinBox->value()){
+        QMessageBox::information( this, "Information","Test is over");
+        ui->mainFrame->setEnabled(false);
+        nb_test=0;
+    }else{
+        this->randomMoveButtons();
+    }
+
 }
 
 void MainWindow::incrementCountdown(){
@@ -65,3 +74,11 @@ int MainWindow::randInt(int low, int high)
     // Random number between low and high
     return qrand() % ((high + 1) - low) + low;
     }
+
+int MainWindow::computeDistance(QPoint btn1, QPoint btn2){
+    return qSqrt(qPow(btn2.x()-btn1.x(),2)+qPow(btn2.y()-btn1.y(),2));
+}
+
+//int MainWindow::computeFitts(){
+
+//}
