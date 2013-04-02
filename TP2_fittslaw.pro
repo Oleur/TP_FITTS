@@ -1,3 +1,5 @@
+QT += widgets
+TEMPLATE=app
 HEADERS += \
     mainwindow.h
 
