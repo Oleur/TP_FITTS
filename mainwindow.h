@@ -28,6 +28,8 @@ public:
     int deviation;
     int computeError;
     int sumSquare;
+    int sumTheoSquare;
+    float theoDeviation;
     int nb_test;
     int active_bool;
     
