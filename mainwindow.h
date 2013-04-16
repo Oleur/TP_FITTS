@@ -20,8 +20,10 @@ public:
    ~MainWindow();
     QTimer *timer_start;
     int countdown;
-    int computeDistance(QPoint, QPoint);
+    float computeDistance(QPoint, QPoint);
+    float computeFitts(float dist);
     int computeAverageTime;
+    int computeAvgFittsTime;
     int computeDeviation();
     int deviation;
     int computeError;

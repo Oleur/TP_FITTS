@@ -52,7 +52,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Click Me</string>
+      <string>Click</string>
      </property>
     </widget>
     <widget class="QPushButton" name="startButton">
@@ -68,7 +68,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Click Me</string>
+      <string>Click</string>
      </property>
     </widget>
    </widget>
@@ -246,7 +246,7 @@
       <string>Ecart-type</string>
      </property>
     </widget>
-    <widget class="QLabel" name="average_label_5">
+    <widget class="QLabel" name="theo_deviation_label">
      <property name="geometry">
       <rect>
        <x>90</x>
@@ -272,7 +272,7 @@
       <string>Erreur Type</string>
      </property>
     </widget>
-    <widget class="QLabel" name="average_label_6">
+    <widget class="QLabel" name="theo_err_label">
      <property name="geometry">
       <rect>
        <x>90</x>
@@ -298,7 +298,7 @@
       <string>Moyenne des temps</string>
      </property>
     </widget>
-    <widget class="QLabel" name="average_label_7">
+    <widget class="QLabel" name="theo_avg_label">
      <property name="geometry">
       <rect>
        <x>150</x>
@@ -324,7 +324,7 @@
       <string>Intervalle de confidance</string>
      </property>
     </widget>
-    <widget class="QLabel" name="average_label_8">
+    <widget class="QLabel" name="theo_range">
      <property name="geometry">
       <rect>
        <x>170</x>

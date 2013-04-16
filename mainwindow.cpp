@@ -42,6 +42,9 @@ void MainWindow::on_startButton_clicked()
    timer_start->start();
    ui->startButton->setEnabled(false);
    ui->endButton->setEnabled(true);
+   ui->endButton->setText("Click");
+   ui->startButton->setText("");
+
    if(active_bool==false){
        ui->nbTest_spinBox->setEnabled(false);
        this->setNbTest(ui->nbTest_spinBox->value());
@@ -61,20 +64,31 @@ void MainWindow::on_endButton_clicked()
 
     sumSquare += qPow((countdown - tmp_average),2);
     deviation = qSqrt(sumSquare/nb_test);
+    float dist = this->computeDistance(ui->endButton->pos(), ui->startButton->pos());
+    float fitts = this->computeFitts(dist);
+
+    computeAvgFittsTime +=fitts;
+    int tmp_fitts_avg = computeAvgFittsTime/nb_test;
 
     QString str_dist;
     QString str_averageTime;
     QString str_deviation;
     str_averageTime.setNum(tmp_average);
-    str_dist.setNum(this->computeDistance(ui->endButton->pos(), ui->startButton->pos()));
+
+    str_dist.setNum(dist);
     str_deviation.setNum(deviation);
     ui->average_moy->setText(str_averageTime+" ms");
     ui->average_ec_type->setText(str_deviation);
+
+    ui->theo_avg_label->setText(QString::number(tmp_fitts_avg));
+
 
     countdown=0;
     nb_test-=1;
     ui->progressBar->setValue(ui->progressBar->value()+1);
     ui->progression_label->setText(QString::number(ui->progressBar->value())+" essais");
+    ui->endButton->setText("");
+    ui->startButton->setText("Click");
     if(nb_test == 0){
         this->reinitTest();
     }else{
@@ -113,7 +127,7 @@ int MainWindow::randInt(int low, int high)
     return qrand() % ((high + 1) - low) + low;
     }
 
-int MainWindow::computeDistance(QPoint btn1, QPoint btn2){
+float MainWindow::computeDistance(QPoint btn1, QPoint btn2){
     return qSqrt(qPow(btn2.x()-btn1.x(),2)+qPow(btn2.y()-btn1.y(),2));
 }
 
@@ -121,9 +135,11 @@ int MainWindow::computeDeviation() {
     return 0;
 }
 
-//int MainWindow::computeFitts(){
-
-//}
+float MainWindow::computeFitts(float dist){
+    int i =0.1;
+    int time_click = 0.2;
+    return qLn((2*dist)/ui->endButton->width())+2*time_click;
+}
 
 void MainWindow::setNbTest(int a){
     this->nb_test=a;
