@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     timer_start = new QTimer(); //Construct the timer
     timer_start->setInterval(1);
     connect(timer_start, SIGNAL(timeout()), this, SLOT(incrementCountdown()));
+    nb_test=1;
     countdown=0;
 
     ui->setupUi(this);
@@ -47,10 +48,10 @@ void MainWindow::on_startButton_clicked()
 
    if(active_bool==false){
        ui->nbTest_spinBox->setEnabled(false);
-       this->setNbTest(ui->nbTest_spinBox->value());
+       //this->setNbTest(ui->nbTest_spinBox->value());
        ui->progressBar->setEnabled(true);
        ui->progression_label->setEnabled(true);
-       ui->progressBar->setRange(0,nb_test);
+       ui->progressBar->setRange(0,ui->nbTest_spinBox->value());
        ui->progressBar->setValue(0);
    }
    active_bool=true;
@@ -77,6 +78,7 @@ void MainWindow::on_endButton_clicked()
 
     str_dist.setNum(dist);
     str_deviation.setNum(deviation);
+    str_err_type.setNum(computeError);
     ui->average_moy->setText(str_averageTime+" ms");
     ui->average_ec_type->setText(str_deviation);
 
@@ -84,12 +86,12 @@ void MainWindow::on_endButton_clicked()
 
 
     countdown=0;
-    nb_test-=1;
+    nb_test+=1;
     ui->progressBar->setValue(ui->progressBar->value()+1);
     ui->progression_label->setText(QString::number(ui->progressBar->value())+" essais");
     ui->endButton->setText("");
     ui->startButton->setText("Click");
-    if(nb_test == 0){
+    if(nb_test == ui->nbTest_spinBox->value()+1){
         this->reinitTest();
     }else{
         this->randomMoveButtons();
