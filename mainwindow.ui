@@ -423,8 +423,25 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>nbTest_spinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>spinboxValueChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>187</x>
+     <y>110</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>526</x>
+     <y>91</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>startButtonClicked()</slot>
+  <slot>spinboxValueChanged()</slot>
  </slots>
 </ui>

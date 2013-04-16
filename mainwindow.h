@@ -41,6 +41,7 @@ private slots:
     void setNbTest(int);
     int getNbTest();
     void reinitTest();
+    void enableFrame();
 
 
 private:

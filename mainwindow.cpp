@@ -22,11 +22,16 @@ MainWindow::MainWindow(QWidget *parent) :
                 );
 
     connect(ui->endButton,SIGNAL(clicked()),this,SLOT(startButtonClicked()));
+    connect(ui->nbTest_spinBox, SIGNAL(valueChanged(int)),this,SLOT(enableFrame()));
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::enableFrame(){
+    ui->mainFrame->setEnabled(true);
 }
 
 void MainWindow::on_startButton_clicked()
@@ -66,7 +71,7 @@ void MainWindow::on_endButton_clicked()
     countdown=0;
     nb_test-=1;
     ui->progressBar->setValue(ui->progressBar->value()+1);
-    ui->progression_label->setText(QString::number(ui->progressBar->value()));
+    ui->progression_label->setText(QString::number(ui->progressBar->value())+" essais");
     if(nb_test == 0){
         this->reinitTest();
     }else{
@@ -80,12 +85,15 @@ void MainWindow::incrementCountdown(){
 }
 
 void MainWindow::reinitTest(){
-    QMessageBox::information( this, "Information","Test is over");
-    ui->mainFrame->setEnabled(false);
     nb_test=1;
     active_bool = false;
-    ui->nbTest_spinBox->setEnabled(true);
+    ui->startButton->setEnabled(true);
+    ui->endButton->setEnabled(false);
     ui->nbTest_spinBox->setValue(0);
+    ui->nbTest_spinBox->setEnabled(true);
+    ui->mainFrame->setEnabled(false);
+    ui->progressBar->setValue(0);
+    ui->progression_label->setText("0 essais");
 }
 
 void  MainWindow::timeOut(){}
