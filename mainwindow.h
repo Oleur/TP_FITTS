@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QTimer>
+#include <Qtime>
 #include <QtCore/qmath.h>
 
 namespace Ui {
@@ -20,7 +21,12 @@ public:
     QTimer *timer_start;
     int countdown;
     int computeDistance(QPoint, QPoint);
-    int nb_test;
+    int computeAverageTime;
+    int computeDeviation();
+    int deviation = 0;
+    int computeError = 0;
+    int sumSquare = 0;
+    int nb_test = 1;
     
 protected slots:
     void timeOut();
