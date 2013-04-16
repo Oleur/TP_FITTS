@@ -100,7 +100,7 @@
      <rect>
       <x>550</x>
       <y>70</y>
-      <width>201</width>
+      <width>181</width>
       <height>141</height>
      </rect>
     </property>
@@ -128,8 +128,8 @@
       <rect>
        <x>90</x>
        <y>40</y>
-       <width>81</width>
-       <height>16</height>
+       <width>46</width>
+       <height>13</height>
       </rect>
      </property>
      <property name="text">
@@ -154,8 +154,8 @@
       <rect>
        <x>90</x>
        <y>60</y>
-       <width>91</width>
-       <height>16</height>
+       <width>46</width>
+       <height>13</height>
       </rect>
      </property>
      <property name="text">
@@ -178,10 +178,10 @@
     <widget class="QLabel" name="average_moy">
      <property name="geometry">
       <rect>
-       <x>110</x>
+       <x>150</x>
        <y>20</y>
-       <width>91</width>
-       <height>16</height>
+       <width>46</width>
+       <height>13</height>
       </rect>
      </property>
      <property name="text">
@@ -204,10 +204,10 @@
     <widget class="QLabel" name="average_int_conf">
      <property name="geometry">
       <rect>
-       <x>140</x>
+       <x>170</x>
        <y>80</y>
-       <width>61</width>
-       <height>16</height>
+       <width>46</width>
+       <height>13</height>
       </rect>
      </property>
      <property name="text">
@@ -218,9 +218,9 @@
    <widget class="QGroupBox" name="groupBox_2">
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>550</x>
       <y>230</y>
-      <width>211</width>
+      <width>181</width>
       <height>141</height>
      </rect>
     </property>
@@ -301,10 +301,10 @@
     <widget class="QLabel" name="average_label_7">
      <property name="geometry">
       <rect>
-       <x>120</x>
+       <x>150</x>
        <y>20</y>
-       <width>91</width>
-       <height>16</height>
+       <width>46</width>
+       <height>13</height>
       </rect>
      </property>
      <property name="text">
@@ -375,7 +375,7 @@
      <rect>
       <x>430</x>
       <y>70</y>
-      <width>31</width>
+      <width>91</width>
       <height>21</height>
      </rect>
     </property>
@@ -399,7 +399,7 @@
      <x>0</x>
      <y>0</y>
      <width>767</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
