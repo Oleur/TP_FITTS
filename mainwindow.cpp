@@ -12,8 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(timer_start, SIGNAL(timeout()), this, SLOT(incrementCountdown()));
     countdown=0;
 
-    //QTimer *timer_end=new QTimer(this);
     ui->setupUi(this);
+    ui->endButton->setEnabled(false);
     ui->endButton->setStyleSheet(
                 "background-color: red; border-style: none;border-width: 0px;border-radius: 5px;border-color: blue;font: 14px;}"
                 );
@@ -29,13 +29,20 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-
 void MainWindow::on_startButton_clicked()
 {
    timer_start->start();
    ui->startButton->setEnabled(false);
    ui->endButton->setEnabled(true);
+   if(active_bool==false){
+       ui->nbTest_spinBox->setEnabled(false);
+       this->setNbTest(ui->nbTest_spinBox->value());
+       ui->progressBar->setEnabled(true);
+       ui->progression_label->setEnabled(true);
+       ui->progressBar->setRange(0,nb_test);
+       ui->progressBar->setValue(0);
+   }
+   active_bool=true;
 }
 
 void MainWindow::on_endButton_clicked()
@@ -55,14 +62,13 @@ void MainWindow::on_endButton_clicked()
     str_deviation.setNum(deviation);
     ui->average_moy->setText(str_averageTime+" ms");
     ui->average_ec_type->setText(str_deviation);
-    QMessageBox::information( this, "Time",str_dist);
 
     countdown=0;
-    nb_test+=1;
-    if(nb_test == ui->nbTest_spinBox->value()+1){
-        QMessageBox::information( this, "Information","Test is over");
-        ui->mainFrame->setEnabled(false);
-        nb_test=1;
+    nb_test-=1;
+    ui->progressBar->setValue(ui->progressBar->value()+1);
+    ui->progression_label->setText(QString::number(ui->progressBar->value()));
+    if(nb_test == 0){
+        this->reinitTest();
     }else{
         this->randomMoveButtons();
     }
@@ -71,6 +77,15 @@ void MainWindow::on_endButton_clicked()
 
 void MainWindow::incrementCountdown(){
     countdown++;
+}
+
+void MainWindow::reinitTest(){
+    QMessageBox::information( this, "Information","Test is over");
+    ui->mainFrame->setEnabled(false);
+    nb_test=1;
+    active_bool = false;
+    ui->nbTest_spinBox->setEnabled(true);
+    ui->nbTest_spinBox->setValue(0);
 }
 
 void  MainWindow::timeOut(){}
@@ -98,3 +113,11 @@ int MainWindow::computeDeviation() {
 //int MainWindow::computeFitts(){
 
 //}
+
+void MainWindow::setNbTest(int a){
+    this->nb_test=a;
+}
+
+int MainWindow::getNbTest(){
+    return this->nb_test;
+}

@@ -23,10 +23,11 @@ public:
     int computeDistance(QPoint, QPoint);
     int computeAverageTime;
     int computeDeviation();
-    int deviation = 0;
-    int computeError = 0;
-    int sumSquare = 0;
-    int nb_test = 1;
+    int deviation;
+    int computeError;
+    int sumSquare;
+    int nb_test;
+    int active_bool;
     
 protected slots:
     void timeOut();
@@ -37,6 +38,9 @@ private slots:
     void incrementCountdown();
     void randomMoveButtons();
     int randInt(int,int);
+    void setNbTest(int);
+    int getNbTest();
+    void reinitTest();
 
 
 private:
