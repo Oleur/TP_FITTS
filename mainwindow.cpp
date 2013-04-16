@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     countdown=0;
 
     ui->setupUi(this);
+    ui->startButton->setEnabled(false);
     ui->endButton->setEnabled(false);
     ui->mainFrame->setEnabled(false);
     ui->endButton->setStyleSheet(
@@ -33,6 +34,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::enableFrame(){
     ui->mainFrame->setEnabled(true);
+    ui->startButton->setEnabled(true);
 }
 
 void MainWindow::on_startButton_clicked()
