@@ -49,6 +49,7 @@ void MainWindow::on_startButton_clicked()
        ui->nbTest_spinBox->setEnabled(false);
        ui->progressBar->setEnabled(true);
        ui->progression_label->setEnabled(true);
+
        ui->progressBar->setRange(0,ui->nbTest_spinBox->value());
        ui->progressBar->setValue(0);
    }
@@ -67,10 +68,13 @@ void MainWindow::on_endButton_clicked()
     countdown=0;
     nb_test+=1;
     ui->progressBar->setValue(ui->progressBar->value()+1);
-    ui->progression_label->setText(QString::number(ui->progressBar->value())+" essais");
+    ui->progression_label->setText(QString::number(ui->progressBar->value())+" essais restants");
     ui->endButton->setText("");
     ui->startButton->setText("Click");
+
+
     if(nb_test == ui->nbTest_spinBox->value()+1){
+        QMessageBox::information(this,"Information","Test terminé :)",QMessageBox::Ok);
         this->reinitTest();
     }else{
         this->randomMoveButtons();
@@ -95,22 +99,23 @@ void MainWindow::reinitTest(){
     ui->nbTest_spinBox->setEnabled(true);
     ui->mainFrame->setEnabled(false);
     ui->progressBar->setValue(0);
-    ui->progression_label->setText("0 essais");
+    ui->progression_label->setText("0 essais restants");
 }
 
 void  MainWindow::timeOut(){}
+
 void  MainWindow::randomMoveButtons(){
     ui->startButton->setEnabled(true);
     ui->endButton->setEnabled(false );
     ui->startButton->setGeometry(randInt(0,500),randInt(0,400), randInt(50,100), randInt(30, 90));
     ui->endButton->setGeometry(randInt(0,500),randInt(0,400), randInt(50,100), randInt(30, 90));
-
 }
+
 int MainWindow::randInt(int low, int high)
-    {
+{
     // Random number between low and high
     return qrand() % ((high + 1) - low) + low;
-    }
+}
 
 float MainWindow::computeDistance(QPoint btn1, QPoint btn2){
     return qSqrt(qPow(btn2.x()-btn1.x(),2)+qPow(btn2.y()-btn1.y(),2));
@@ -130,6 +135,8 @@ void MainWindow::computeValues(){
     ui->theo_avg_label->setText(QString::number(computeAvg(theo_values,nb_test)));
     ui->theo_deviation_label->setText(QString::number(computeDeviation(theo_values,nb_test)));
     ui->theo_err_label->setText(QString::number(computeErrorType(theo_values,nb_test)));
+
+    ui->ecart_label->setText("Ecart théorie-pratique "+QString::number(computeAvg(theo_values,nb_test)-computeAvg(emp_values,nb_test)));
 }
 
 float MainWindow::computeAvg(QList<float> list, int n){

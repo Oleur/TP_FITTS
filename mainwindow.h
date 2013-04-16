@@ -30,6 +30,7 @@ public:
     int computeError;
     float theoDeviation;
     int nb_test;
+    int nb_step;
     int active_bool;
     QList<float> emp_values;
     QList<float> theo_values;

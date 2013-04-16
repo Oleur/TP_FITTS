@@ -19,12 +19,17 @@
      <rect>
       <x>30</x>
       <y>0</y>
-      <width>471</width>
+      <width>751</width>
       <height>81</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Cliquer alternativement sur les cercles &lt;br/&gt;Continuez tant que le programme ne vous indique pas de vous arrêter.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;Cliquer alternativement sur les boutons &lt;br/&gt;Continuez tant que le programme ne vous indique pas de vous arrêter.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QFrame" name="mainFrame">
@@ -98,9 +103,9 @@
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>550</x>
-      <y>70</y>
-      <width>261</width>
+      <x>560</x>
+      <y>80</y>
+      <width>260</width>
       <height>141</height>
      </rect>
     </property>
@@ -175,40 +180,14 @@
       <string>Moyenne des temps</string>
      </property>
     </widget>
-    <widget class="QLabel" name="emp_int_confiance">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>80</y>
-       <width>151</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Intervalle de confidance</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="average_int_conf">
-     <property name="geometry">
-      <rect>
-       <x>170</x>
-       <y>80</y>
-       <width>46</width>
-       <height>13</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>0</string>
-     </property>
-    </widget>
    </widget>
    <widget class="QGroupBox" name="groupBox_2">
     <property name="geometry">
      <rect>
       <x>550</x>
-      <y>230</y>
+      <y>250</y>
       <width>261</width>
-      <height>141</height>
+      <height>81</height>
      </rect>
     </property>
     <property name="title">
@@ -285,26 +264,13 @@
       <string>Moyenne des temps</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_10">
+    <widget class="QLabel" name="theo_avg_label">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>80</y>
-       <width>151</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Intervalle de confidance</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="theo_range">
-     <property name="geometry">
-      <rect>
-       <x>170</x>
-       <y>80</y>
-       <width>46</width>
-       <height>13</height>
+       <x>150</x>
+       <y>20</y>
+       <width>101</width>
+       <height>21</height>
       </rect>
      </property>
      <property name="text">
@@ -324,8 +290,17 @@
       <height>23</height>
      </rect>
     </property>
+    <property name="maximum">
+     <number>100</number>
+    </property>
     <property name="value">
-     <number>24</number>
+     <number>0</number>
+    </property>
+    <property name="textVisible">
+     <bool>true</bool>
+    </property>
+    <property name="format">
+     <string>%p%</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
@@ -349,7 +324,7 @@
      <rect>
       <x>430</x>
       <y>70</y>
-      <width>91</width>
+      <width>111</width>
       <height>21</height>
      </rect>
     </property>
@@ -370,17 +345,25 @@
      <string>0</string>
     </property>
    </widget>
-   <widget class="QLabel" name="theo_avg_label">
+   <widget class="QLabel" name="ecart_label">
     <property name="geometry">
      <rect>
-      <x>710</x>
-      <y>250</y>
-      <width>101</width>
-      <height>21</height>
+      <x>570</x>
+      <y>355</y>
+      <width>231</width>
+      <height>121</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string>0</string>
+     <string/>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
     </property>
    </widget>
    <zorder>groupBox</zorder>
@@ -393,7 +376,7 @@
    <zorder>label_3</zorder>
    <zorder>progression_label</zorder>
    <zorder>average_moy</zorder>
-   <zorder>theo_avg_label</zorder>
+   <zorder>ecart_label</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -404,8 +387,26 @@
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionNew"/>
+    <addaction name="actionQuit"/>
+   </widget>
+   <addaction name="menuFile"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionNew">
+   <property name="text">
+    <string>New</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Quit</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections>
