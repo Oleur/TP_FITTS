@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>767</width>
-    <height>600</height>
+    <width>828</width>
+    <height>557</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -175,19 +175,6 @@
       <string>Moyenne des temps</string>
      </property>
     </widget>
-    <widget class="QLabel" name="average_moy">
-     <property name="geometry">
-      <rect>
-       <x>120</x>
-       <y>20</y>
-       <width>81</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>0</string>
-     </property>
-    </widget>
     <widget class="QLabel" name="emp_int_confiance">
      <property name="geometry">
       <rect>
@@ -303,8 +290,8 @@
       <rect>
        <x>150</x>
        <y>20</y>
-       <width>46</width>
-       <height>13</height>
+       <width>91</width>
+       <height>16</height>
       </rect>
      </property>
      <property name="text">
@@ -383,6 +370,19 @@
      <string>0</string>
     </property>
    </widget>
+   <widget class="QLabel" name="average_moy">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>90</y>
+      <width>90</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
    <zorder>groupBox</zorder>
    <zorder>label</zorder>
    <zorder>mainFrame</zorder>
@@ -392,14 +392,15 @@
    <zorder>progressBar</zorder>
    <zorder>label_3</zorder>
    <zorder>progression_label</zorder>
+   <zorder>average_moy</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>767</width>
-     <height>21</height>
+     <width>828</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>

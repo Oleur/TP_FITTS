@@ -74,6 +74,7 @@ void MainWindow::on_endButton_clicked()
     QString str_dist;
     QString str_averageTime;
     QString str_deviation;
+    QString str_err_type;
     str_averageTime.setNum(tmp_average);
 
     str_dist.setNum(dist);
