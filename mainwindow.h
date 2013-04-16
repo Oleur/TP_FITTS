@@ -22,16 +22,17 @@ public:
     int countdown;
     float computeDistance(QPoint, QPoint);
     float computeFitts(float dist);
-    int computeAverageTime;
-    int computeAvgFittsTime;
-    int computeDeviation();
-    int deviation;
+    void computeValues();
+    float computeAvg(QList<float>,int);
+    float computeDeviation(QList<float>,int);
+    float computeErrorType(QList<float>,int);
+    float computeIntervalConfidence(QList<float>,int);
     int computeError;
-    int sumSquare;
-    int sumTheoSquare;
     float theoDeviation;
     int nb_test;
     int active_bool;
+    QList<float> emp_values;
+    QList<float> theo_values;
     
 protected slots:
     void timeOut();
@@ -42,8 +43,6 @@ private slots:
     void incrementCountdown();
     void randomMoveButtons();
     int randInt(int,int);
-    void setNbTest(int);
-    int getNbTest();
     void reinitTest();
     void enableFrame();
 

@@ -100,7 +100,7 @@
      <rect>
       <x>550</x>
       <y>70</y>
-      <width>201</width>
+      <width>261</width>
       <height>141</height>
      </rect>
     </property>
@@ -154,8 +154,8 @@
       <rect>
        <x>90</x>
        <y>60</y>
-       <width>46</width>
-       <height>13</height>
+       <width>101</width>
+       <height>16</height>
       </rect>
      </property>
      <property name="text">
@@ -207,7 +207,7 @@
      <rect>
       <x>550</x>
       <y>230</y>
-      <width>181</width>
+      <width>261</width>
       <height>141</height>
      </rect>
     </property>
@@ -264,8 +264,8 @@
       <rect>
        <x>90</x>
        <y>60</y>
-       <width>46</width>
-       <height>13</height>
+       <width>91</width>
+       <height>16</height>
       </rect>
      </property>
      <property name="text">
@@ -283,19 +283,6 @@
      </property>
      <property name="text">
       <string>Moyenne des temps</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="theo_avg_label">
-     <property name="geometry">
-      <rect>
-       <x>150</x>
-       <y>15</y>
-       <width>101</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>0</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_10">
@@ -383,6 +370,19 @@
      <string>0</string>
     </property>
    </widget>
+   <widget class="QLabel" name="theo_avg_label">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>250</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
    <zorder>groupBox</zorder>
    <zorder>label</zorder>
    <zorder>mainFrame</zorder>
@@ -393,6 +393,7 @@
    <zorder>label_3</zorder>
    <zorder>progression_label</zorder>
    <zorder>average_moy</zorder>
+   <zorder>theo_avg_label</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

@@ -12,9 +12,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(timer_start, SIGNAL(timeout()), this, SLOT(incrementCountdown()));
     nb_test=1;
     countdown=0;
-    computeAverageTime=0;
-    computeAvgFittsTime=0;
-
     ui->setupUi(this);
     ui->startButton->setEnabled(false);
     ui->endButton->setEnabled(false);
@@ -50,7 +47,6 @@ void MainWindow::on_startButton_clicked()
 
    if(active_bool==false){
        ui->nbTest_spinBox->setEnabled(false);
-       //this->setNbTest(ui->nbTest_spinBox->value());
        ui->progressBar->setEnabled(true);
        ui->progression_label->setEnabled(true);
        ui->progressBar->setRange(0,ui->nbTest_spinBox->value());
@@ -62,35 +58,11 @@ void MainWindow::on_startButton_clicked()
 void MainWindow::on_endButton_clicked()
 {
     timer_start->stop();
-    computeAverageTime += countdown;
-    int tmp_average = computeAverageTime/nb_test;
+    emp_values << countdown;
 
-    sumSquare += qPow((countdown - tmp_average),2);
-    deviation = qSqrt(sumSquare/nb_test);
     float dist = this->computeDistance(ui->endButton->pos(), ui->startButton->pos());
     float fitts = this->computeFitts(dist);
-
-    computeAvgFittsTime +=fitts;
-    int tmp_fitts_avg = computeAvgFittsTime/nb_test;
-    sumTheoSquare += qPow((fitts - tmp_fitts_avg),2);
-    theoDeviation = qSqrt(sumTheoSquare/nb_test);
-
-
-    QString str_dist;
-    QString str_averageTime;
-    QString str_deviation;
-    QString str_err_type;
-    str_averageTime.setNum(tmp_average);
-
-    str_dist.setNum(dist);
-    str_deviation.setNum(deviation);
-    str_err_type.setNum(computeError);
-    ui->average_moy->setText(str_averageTime+" ms");
-    ui->average_ec_type->setText(str_deviation);
-
-    ui->theo_avg_label->setText(QString::number(tmp_fitts_avg));
-    ui->theo_deviation_label->setText(QString::number(theoDeviation));
-
+    theo_values << fitts;
 
     countdown=0;
     nb_test+=1;
@@ -111,10 +83,11 @@ void MainWindow::incrementCountdown(){
 }
 
 void MainWindow::reinitTest(){
+    this->computeValues();
+    emp_values.clear();
+    theo_values.clear();
     nb_test=1;
     countdown=0;
-    computeAverageTime=0;
-    computeAvgFittsTime=0;
     active_bool = false;
     ui->startButton->setEnabled(true);
     ui->endButton->setEnabled(false);
@@ -143,20 +116,46 @@ float MainWindow::computeDistance(QPoint btn1, QPoint btn2){
     return qSqrt(qPow(btn2.x()-btn1.x(),2)+qPow(btn2.y()-btn1.y(),2));
 }
 
-int MainWindow::computeDeviation() {
-    return 0;
-}
-
 float MainWindow::computeFitts(float dist){
     int i =100; //0.1 s
     int time_click = 200; //0.2s in ms
     return i*qLn((2*dist)/ui->endButton->width())+2*time_click;
 }
 
-void MainWindow::setNbTest(int a){
-    this->nb_test=a;
+void MainWindow::computeValues(){
+    ui->average_moy->setText(QString::number(computeAvg(emp_values,nb_test)));
+    ui->average_ec_type->setText(QString::number(computeDeviation(emp_values,nb_test)));
+    ui->average_err_type->setText(QString::number(computeErrorType(emp_values,nb_test)));
+
+    ui->theo_avg_label->setText(QString::number(computeAvg(theo_values,nb_test)));
+    ui->theo_deviation_label->setText(QString::number(computeDeviation(theo_values,nb_test)));
+    ui->theo_err_label->setText(QString::number(computeErrorType(theo_values,nb_test)));
 }
 
-int MainWindow::getNbTest(){
-    return this->nb_test;
+float MainWindow::computeAvg(QList<float> list, int n){
+    float sum = 0;
+    QList<float>::iterator i;
+    //Sum all the elements
+    for (i = list.begin(); i != list.end(); ++i){
+      sum += *i;
+    }
+
+    float avg = sum/n;
+    return avg;
+}
+
+ float MainWindow::computeDeviation(QList<float> list,int n){
+    float sumSquare=0;
+    QList<float>::iterator i;
+    float avg = computeAvg(list,n);
+    for (i = list.begin(); i != list.end(); ++i){
+        sumSquare += (*i-avg)*(*i-avg);
+    }
+
+    float deviation = qSqrt(sumSquare)/n;
+    return deviation;
+ }
+
+float MainWindow::computeErrorType(QList<float> list ,int n){
+    return (computeDeviation(list,n)/qSqrt(n));
 }
