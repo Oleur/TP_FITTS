@@ -11,11 +11,10 @@ MainWindow::MainWindow(QWidget *parent) :
     timer_start->setInterval(1);
     connect(timer_start, SIGNAL(timeout()), this, SLOT(incrementCountdown()));
     countdown=0;
-    computeAverageTime = 0;
-    computeError = 0;
 
     ui->setupUi(this);
     ui->endButton->setEnabled(false);
+    ui->mainFrame->setEnabled(false);
     ui->endButton->setStyleSheet(
                 "background-color: red; border-style: none;border-width: 0px;border-radius: 5px;border-color: blue;font: 14px;}"
                 );
@@ -60,20 +59,15 @@ void MainWindow::on_endButton_clicked()
 
     sumSquare += qPow((countdown - tmp_average),2);
     deviation = qSqrt(sumSquare/nb_test);
-    computeError = deviation/qSqrt(nb_test);
 
     QString str_dist;
     QString str_averageTime;
     QString str_deviation;
-    QString str_err_type;
-
     str_averageTime.setNum(tmp_average);
     str_dist.setNum(this->computeDistance(ui->endButton->pos(), ui->startButton->pos()));
     str_deviation.setNum(deviation);
-    str_err_type.setNum(computeError);
     ui->average_moy->setText(str_averageTime+" ms");
-    ui->average_ec_type->setText(str_deviation+" ms");
-    ui->average_err_type->setText(str_err_type);
+    ui->average_ec_type->setText(str_deviation);
 
     countdown=0;
     nb_test-=1;
@@ -119,6 +113,10 @@ int MainWindow::randInt(int low, int high)
 
 int MainWindow::computeDistance(QPoint btn1, QPoint btn2){
     return qSqrt(qPow(btn2.x()-btn1.x(),2)+qPow(btn2.y()-btn1.y(),2));
+}
+
+int MainWindow::computeDeviation() {
+    return 0;
 }
 
 //int MainWindow::computeFitts(){
