@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
     computeError = 0;
 
     ui->setupUi(this);
+    ui->startButton->setEnabled(false);
     ui->endButton->setEnabled(false);
     ui->endButton->setStyleSheet(
                 "background-color: red; border-style: none;border-width: 0px;border-radius: 5px;border-color: blue;font: 14px;}"
@@ -34,6 +35,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::enableFrame(){
     ui->mainFrame->setEnabled(true);
+    ui->startButton->setEnabled(true);
 }
 
 void MainWindow::on_startButton_clicked()
